@@ -37,15 +37,15 @@ app.get('/api/TodoItems', function(req, res) {
 
 app.get('api/TodoItems/:number', function(req, res) {
     var num = parseInt(req.params.number);
-    res.json(todoItems[itemsID.indexOf(num)]);
+    res.json(todoItems[items.indexOf(num)]);
 });
 
 app.post('/api/TodoItems/', function(req, res) {
-    if(itemsID.includes(req.body.todoItemId)) {
-        todoItems.splice(itemsID.indexOf(req.body.todoItemId, 1, req.body));
+    if(items.includes(req.body.todoItemId)) {
+        todoItems.splice(items.indexOf(req.body.todoItemId, 1, req.body));
     } else {
         todoItems.push(req.body);
-        itemsID.push(req.body.todoItemId);
+        items.push(req.body.todoItemId);
     }; 
     res.status(201).send(req.body);
 });
@@ -53,8 +53,8 @@ app.post('/api/TodoItems/', function(req, res) {
 app.delete('/api/TodoItems/:number', function(req, res) {
     var num = parseInt(req.params.number);
     res.json(todoItems[num]);
-    todoItems.splice(itemsID.indexOf(num), 1);
-    itemID.splice(itemsID.indexOf(num), 1);
+    todoItems.splice(items.indexOf(num), 1);
+    items.splice(items.indexOf(num), 1);
 });
 
 module.exports = app;
